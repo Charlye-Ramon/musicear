@@ -5,6 +5,7 @@ import { NOTES, NOTE_ES, SCALES, CIRCLE_OF_FIFTHS, getScaleNotes } from "../cons
 import { useAudio } from "../hooks/useAudio";
 import PianoKeys from "../components/PianoKeys";
 import GuitarNeck from "../components/GuitarNeck";
+import HarmonicMap from "../components/HarmonicMap";
 
 // ─── SHARED STATUS STYLE ─────────────────────────────────────────────────────
 function statusStyle(s){
@@ -762,6 +763,7 @@ const TOPIC_CONTENT = {
     ],
     visual:"ear",
   },
+  harmonic:{title:"Mapa Armónico",icon:"🌐",color:"#e91e8c",content:[{h:"¿Qué es el Mapa Armónico?",p:"Visualiza todas las relaciones entre acordes desde cualquier tónica. El centro es la tónica. El primer anillo muestra acordes diatónicos directamente relacionados. El segundo anillo contiene dominantes secundarios y acordes prestados. El tercer anillo incluye acordes cromáticos y modales."},                 {h:"Cómo usar el mapa",p:"Haz clic en cualquier acorde para escucharlo y ver su relación. Usa las variaciones para filtrar: Diatónico (solo acordes de la tonalidad), Secundarios (dominantes secundarios), Intercambio Modal (acordes del modo paralelo), Jazz (acordes con 7mas)."},                 {h:"¿Para qué sirve?",p:"Para encontrar acordes de sustitución, crear modulaciones naturales, entender por qué ciertas progresiones suenan 'inesperadas pero bien'. Es la herramienta que usan los compositores de jazz y pop para salirse de lo predecible."}],visual:"harmonic"},
   order_exercise:{title:"Ordenar Escala",icon:"🎯",color:"#9C27B0",content:[{h:"Ejercicio",p:"Ordena todas las notas de la escala seleccionada. Arrastra desde el banco al orden correcto."}],visual:"order_exercise"},
   complete_exercise:{title:"Completar Escala",icon:"🧩",color:"#e74c3c",content:[{h:"Ejercicio",p:"Completa los espacios vacíos de la escala. Elige la dificultad y arrastra las notas correctas."}],visual:"complete_exercise"},
 };
@@ -782,7 +784,7 @@ export default function Theory() {
     if(v==="chords")    return <ChordBuilder playNote={playNote}/>;
     if(v==="bpm")       return <BPMVisual/>;
     if(v==="ear")       return <EarTrainingGuide/>;
-    if(v==="order_exercise")    return <ScaleOrderExercise playNote={playNote}/>;
+    if(v==="harmonic") return <HarmonicMap playNote={playNote}/>;    if(v==="order_exercise")    return <ScaleOrderExercise playNote={playNote}/>;
     if(v==="complete_exercise") return <CompleteScaleExercise playNote={playNote}/>;
     if(v==="circle") return (
       <div>
